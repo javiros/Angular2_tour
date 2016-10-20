@@ -1,3 +1,6 @@
+// https://angular.io/docs/ts/latest/tutorial/toh-pt3.html
+// NAMING CONVENTIONS SECTION
+
 import { Component } from '@angular/core';
 
 export class Hero {
@@ -23,25 +26,50 @@ const HEROES: Hero[] = [
   selector: 'my-app',
   template: `
   	<h1>{{title}}</h1>
-  	<h2>My Heroes</h2>
-  	<ul class="heroes">
-  	  <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
-  	    <!-- each hero goes here -->
-  	    <span class="badge">{{hero.id}}</span> {{hero.name}}, {{hero.age}}
-  	  </li>
-  	</ul>
-  	<div *ngIf="selectedHero">
-      <h2>{{selectedHero.name}} details!</h2>
-      <div><label>id: </label>{{selectedHero.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-        <br />
-        {{selectedHero.name}}'s age is {{selectedHero.age}} 
-      </div>
-    </div>
+    <div class="container">
+      <div class="heroes-list">
+		  	<h2>My Heroes</h2>
+		  	<ul class="heroes">
+		  	  <li 
+		  	  *ngFor="let hero of heroes" 
+		  	  [class.selected]="hero === selectedHero" 
+		  	  (click)="onSelect(hero)">
+		  	    <!-- each hero goes here -->
+		  	    <span class="badge">{{hero.id}}</span> {{hero.name}}, {{hero.age}}
+		  	  </li>
+		  	</ul>
+		  </div>
+		  <div class="hero-details">
+		  	<div *ngIf="selectedHero">
+		      <h2>{{selectedHero.name}} details!</h2>
+		      <div><label>id: </label>{{selectedHero.id}}</div>
+		      <div>
+		        <label>name: </label>
+		        <input [(ngModel)]="selectedHero.name" placeholder="name"/>
+		        <br />
+		        {{selectedHero.name}}'s age is {{selectedHero.age}} 
+		        <span *ngIf="selectedHero.age > 50">
+		        	...and yup, our hero is getting old....
+		        </span>
+		      </div>
+		    </div>
+		  </div>  
+	  </div>
   	`,
   	styles: [`
+  		.container {
+  			width: 100%
+  		}
+  		.heroes-list {
+  			position: relative;
+  			float: left;
+  			width: 30%
+  		}
+  		.hero-details {
+  			postition: relative;
+  			float: right;
+  			width: 70%;
+  		}
   	  .selected {
   	    background-color: #CFD8DC !important;
   	    color: white;
