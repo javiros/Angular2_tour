@@ -2,12 +2,7 @@
 // NAMING CONVENTIONS SECTION
 
 import { Component } from '@angular/core';
-
-export class Hero {
-	id: number;
-	name: string;
-	age: number;
-}
+import { Hero } from './hero';
 
 const HEROES: Hero[] = [
 	{ id: 11, name: 'Superman', age: 130 },
@@ -40,19 +35,7 @@ const HEROES: Hero[] = [
 		  	</ul>
 		  </div>
 		  <div class="hero-details">
-		  	<div *ngIf="selectedHero">
-		      <h2>{{selectedHero.name}} details!</h2>
-		      <div><label>id: </label>{{selectedHero.id}}</div>
-		      <div>
-		        <label>name: </label>
-		        <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-		        <br />
-		        {{selectedHero.name}}'s age is {{selectedHero.age}} 
-		        <span *ngIf="selectedHero.age > 50">
-		        	...and yup, our hero is getting old....
-		        </span>
-		      </div>
-		    </div>
+		  	<my-hero-detail [hero]="selectedHero"></my-hero-detail>
 		  </div>  
 	  </div>
   	`,
